@@ -86,7 +86,8 @@ abstract class abstract_processor extends process_base {
      * @return string The system instruction.
      */
     protected function get_system_instruction(): string {
-        return $this->provider->actionconfig[$this->action::class]['settings']['systeminstruction'] ?? '';
+        return $this->provider->actionconfig[$this->action::class]['settings']['systeminstruction']
+            ?? $this->action::get_system_instruction();
     }
 
     /**
