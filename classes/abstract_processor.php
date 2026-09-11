@@ -39,7 +39,8 @@ abstract class abstract_processor extends process_base {
      * @return UriInterface The endpoint URI.
      */
     protected function get_endpoint(): UriInterface {
-        $endpoint = $this->provider->actionconfig[$this->action::class]['settings']['endpoint'] ?? 'https://api.sarvam.ai/v1/chat/completions';
+        $endpoint = $this->provider->actionconfig[$this->action::class]['settings']['endpoint']
+            ?? 'https://api.sarvam.ai/v1/chat/completions';
         return new Uri($endpoint);
     }
 
@@ -119,9 +120,10 @@ abstract class abstract_processor extends process_base {
         $client = \core\di::get(http_client::class);
         try {
             $response = $client->send(
-                $request, [
-                'base_uri' => $this->get_endpoint(),
-                RequestOptions::HTTP_ERRORS => false,
+                $request,
+                [
+                    'base_uri' => $this->get_endpoint(),
+                    RequestOptions::HTTP_ERRORS => false,
                 ]
             );
         } catch (RequestException $e) {

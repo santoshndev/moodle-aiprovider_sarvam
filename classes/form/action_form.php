@@ -101,11 +101,21 @@ class action_form extends action_settings_form {
             }
         }
 
-        if (array_key_exists('temperature', $data) && $data['temperature'] !== '' && (!is_numeric($data['temperature']) || (float) $data['temperature'] < 0 || (float) $data['temperature'] > 2)) {
+        if (
+            array_key_exists('temperature', $data)
+            && $data['temperature'] !== ''
+            && (!is_numeric($data['temperature'])
+                || (float) $data['temperature'] < 0
+                || (float) $data['temperature'] > 2)
+        ) {
             $errors['temperature'] = get_string('settings_temperature_range', 'aiprovider_sarvam');
         }
 
-        if (array_key_exists('max_tokens', $data) && $data['max_tokens'] !== '' && (!is_numeric($data['max_tokens']) || (int) $data['max_tokens'] < 1)) {
+        if (
+            array_key_exists('max_tokens', $data)
+            && $data['max_tokens'] !== ''
+            && (!is_numeric($data['max_tokens']) || (int) $data['max_tokens'] < 1)
+        ) {
             $errors['max_tokens'] = get_string('settings_max_tokens_range', 'aiprovider_sarvam');
         }
 
