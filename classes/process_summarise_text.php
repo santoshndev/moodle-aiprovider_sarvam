@@ -19,9 +19,10 @@ namespace aiprovider_sarvam;
 /**
  * Process text summarisation for Sarvam AI.
  *
- * @package    aiprovider_sarvam
- * @copyright  2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   aiprovider_sarvam
+ * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class process_summarise_text extends process_generate_text {
+class process_summarise_text extends process_generate_text
+{
 }

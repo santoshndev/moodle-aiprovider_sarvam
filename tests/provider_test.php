@@ -19,20 +19,30 @@ namespace aiprovider_sarvam;
 /**
  * Test Sarvam provider methods.
  *
- * @package    aiprovider_sarvam
- * @copyright  2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   aiprovider_sarvam
+ * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
- * @covers     \aiprovider_sarvam\provider
+ * @covers \aiprovider_sarvam\provider
  */
-final class provider_test extends \advanced_testcase {
-    /** @var \core_ai\manager */
+final class provider_test extends \advanced_testcase
+{
+    /**
+     * 
+     *
+     * @var \core_ai\manager 
+     */
     private $manager;
 
-    /** @var \core_ai\provider */
+    /**
+     * 
+     *
+     * @var \core_ai\provider 
+     */
     private $provider;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
         $this->resetAfterTest();
 
@@ -45,7 +55,8 @@ final class provider_test extends \advanced_testcase {
         );
     }
 
-    public function test_get_action_list(): void {
+    public function test_get_action_list(): void
+    {
         $actionlist = $this->provider->get_action_list();
         $this->assertIsArray($actionlist);
         $this->assertCount(3, $actionlist);
@@ -54,7 +65,8 @@ final class provider_test extends \advanced_testcase {
         $this->assertContains(\core_ai\aiactions\explain_text::class, $actionlist);
     }
 
-    public function test_is_provider_configured(): void {
+    public function test_is_provider_configured(): void
+    {
         $this->assertFalse($this->provider->is_provider_configured());
 
         $updatedprovider = $this->manager->update_provider_instance(

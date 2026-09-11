@@ -28,21 +28,25 @@ use Psr\Http\Message\UriInterface;
 /**
  * Base processor for the Sarvam AI provider.
  *
- * @package    aiprovider_sarvam
- * @copyright  2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   aiprovider_sarvam
+ * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-abstract class abstract_processor extends process_base {
-    protected function get_endpoint(): UriInterface {
+abstract class abstract_processor extends process_base
+{
+    protected function get_endpoint(): UriInterface
+    {
         $endpoint = $this->provider->actionconfig[$this->action::class]['settings']['endpoint'] ?? 'https://api.sarvam.ai/v1/chat/completions';
         return new Uri($endpoint);
     }
 
-    protected function get_model(): string {
+    protected function get_model(): string
+    {
         return $this->provider->actionconfig[$this->action::class]['settings']['model'] ?? 'sarvam-105b';
     }
 
-    protected function get_model_settings(): array {
+    protected function get_model_settings(): array
+    {
         $settings = $this->provider->actionconfig[$this->action::class]['settings'];
         if (!empty($settings['modelextraparams'])) {
             $params = json_decode($settings['modelextraparams'], true);
@@ -64,7 +68,8 @@ abstract class abstract_processor extends process_base {
         return $settings;
     }
 
-    protected function get_system_instruction(): string {
+    protected function get_system_instruction(): string
+    {
         return $this->provider->actionconfig[$this->action::class]['settings']['systeminstruction'] ?? '';
     }
 
@@ -73,7 +78,8 @@ abstract class abstract_processor extends process_base {
     abstract protected function handle_api_success(ResponseInterface $response): array;
 
     #[\Override]
-    protected function query_ai_api(): array {
+    protected function query_ai_api(): array
+    {
         $request = $this->create_request_object(
             userid: $this->provider->generate_userid($this->action->get_configuration('userid')),
         );
@@ -81,10 +87,12 @@ abstract class abstract_processor extends process_base {
 
         $client = \core\di::get(http_client::class);
         try {
-            $response = $client->send($request, [
+            $response = $client->send(
+                $request, [
                 'base_uri' => $this->get_endpoint(),
                 RequestOptions::HTTP_ERRORS => false,
-            ]);
+                ]
+            );
         } catch (RequestException $e) {
             return \core_ai\error\factory::create($e->getCode(), $e->getMessage())->get_error_details();
         }
@@ -97,7 +105,8 @@ abstract class abstract_processor extends process_base {
         return $this->handle_api_error($response);
     }
 
-    protected function handle_api_error(ResponseInterface $response): array {
+    protected function handle_api_error(ResponseInterface $response): array
+    {
         $status = $response->getStatusCode();
         if ($status >= 500 && $status < 600) {
             $errormessage = $response->getReasonPhrase();

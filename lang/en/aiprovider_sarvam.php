@@ -17,9 +17,9 @@
 /**
  * Strings for component aiprovider_sarvam, language 'en'.
  *
- * @package    aiprovider_sarvam
- * @copyright  2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   aiprovider_sarvam
+ * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $string['action:explain_text:endpoint'] = 'API endpoint';

@@ -22,13 +22,15 @@ use Psr\Http\Message\RequestInterface;
 /**
  * Sarvam AI provider implementation.
  *
- * @package    aiprovider_sarvam
- * @copyright  2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   aiprovider_sarvam
+ * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider extends \core_ai\provider {
+class provider extends \core_ai\provider
+{
     #[\Override]
-    public static function get_action_list(): array {
+    public static function get_action_list(): array
+    {
         return [
             \core_ai\aiactions\generate_text::class,
             \core_ai\aiactions\summarise_text::class,
@@ -37,7 +39,8 @@ class provider extends \core_ai\provider {
     }
 
     #[\Override]
-    public function add_authentication_headers(RequestInterface $request): RequestInterface {
+    public function add_authentication_headers(RequestInterface $request): RequestInterface
+    {
         $request = $request->withAddedHeader('api-subscription-key', $this->config['apikey']);
         if (!empty($this->config['apikey'])) {
             $request = $request->withAddedHeader('Authorization', 'Bearer ' . $this->config['apikey']);
@@ -63,7 +66,8 @@ class provider extends \core_ai\provider {
     }
 
     #[\Override]
-    public static function get_action_setting_defaults(string $action): array {
+    public static function get_action_setting_defaults(string $action): array
+    {
         $actionname = substr($action, (strrpos($action, '\\') + 1));
         $customdata = [
             'actionname' => $actionname,
@@ -79,7 +83,8 @@ class provider extends \core_ai\provider {
     }
 
     #[\Override]
-    public function is_provider_configured(): bool {
+    public function is_provider_configured(): bool
+    {
         return !empty($this->config['apikey']);
     }
 }

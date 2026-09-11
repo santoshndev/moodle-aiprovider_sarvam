@@ -22,11 +22,12 @@ use core_ai\form\action_settings_form;
 /**
  * Base Sarvam action settings form.
  *
- * @package    aiprovider_sarvam
- * @copyright  2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   aiprovider_sarvam
+ * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class action_form extends action_settings_form {
+class action_form extends action_settings_form
+{
     protected array $actionconfig;
     protected ?string $returnurl;
     protected string $actionname;
@@ -36,7 +37,8 @@ class action_form extends action_settings_form {
     protected array $storedmodelsettings;
 
     #[\Override]
-    protected function definition(): void {
+    protected function definition(): void
+    {
         $mform = $this->_form;
         $this->actionconfig = $this->_customdata['actionconfig']['settings'] ?? [];
         $this->returnurl = $this->_customdata['returnurl'] ?? null;
@@ -50,7 +52,8 @@ class action_form extends action_settings_form {
     }
 
     #[\Override]
-    public function set_data($data): void {
+    public function set_data($data): void
+    {
         if (!empty($data['modelextraparams'])) {
             $data['modelextraparams'] = json_encode(json_decode($data['modelextraparams']), JSON_PRETTY_PRINT);
         }
@@ -58,7 +61,8 @@ class action_form extends action_settings_form {
     }
 
     #[\Override]
-    public function get_data(): ?\stdClass {
+    public function get_data(): ?\stdClass
+    {
         $data = parent::get_data();
 
         if (!empty($data)) {
@@ -70,7 +74,8 @@ class action_form extends action_settings_form {
     }
 
     #[\Override]
-    public function validation($data, $files): array {
+    public function validation($data, $files): array
+    {
         $errors = parent::validation($data, $files);
 
         if (!empty($data['modelextraparams'])) {
@@ -96,13 +101,15 @@ class action_form extends action_settings_form {
     }
 
     #[\Override]
-    public function get_defaults(): array {
+    public function get_defaults(): array
+    {
         $data = parent::get_defaults();
         unset($data['modeltemplate'], $data['custommodel'], $data['modelextraparams']);
         return $data;
     }
 
-    protected function add_model_fields(): void {
+    protected function add_model_fields(): void
+    {
         global $PAGE;
         $PAGE->requires->js_call_amd('aiprovider_sarvam/modelchooser', 'init');
         $mform = $this->_form;
