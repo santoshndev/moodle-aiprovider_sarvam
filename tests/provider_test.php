@@ -26,20 +26,15 @@ namespace aiprovider_sarvam;
  * @covers \aiprovider_sarvam\provider
  */
 final class provider_test extends \advanced_testcase {
-    /**
-     * 
-     *
-     * @var \core_ai\manager 
-     */
+    /** @var \core_ai\manager */
     private $manager;
 
-    /**
-     * 
-     *
-     * @var \core_ai\provider 
-     */
+    /** @var \core_ai\provider */
     private $provider;
 
+    /**
+     * Overriding setUp() function to always reset after tests.
+     */
     public function setUp(): void {
         parent::setUp();
         $this->resetAfterTest();
@@ -53,6 +48,9 @@ final class provider_test extends \advanced_testcase {
         );
     }
 
+    /**
+     * Test get_action_list
+     */
     public function test_get_action_list(): void {
         $actionlist = $this->provider->get_action_list();
         $this->assertIsArray($actionlist);
@@ -62,6 +60,9 @@ final class provider_test extends \advanced_testcase {
         $this->assertContains(\core_ai\aiactions\explain_text::class, $actionlist);
     }
 
+    /**
+     * Test is_provider_configured.
+     */
     public function test_is_provider_configured(): void {
         $this->assertFalse($this->provider->is_provider_configured());
 

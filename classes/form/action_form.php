@@ -27,12 +27,33 @@ use core_ai\form\action_settings_form;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class action_form extends action_settings_form {
+    /**
+     * @var array Action configuration.
+     */
     protected array $actionconfig;
+    /**
+     * @var string|null Return URL.
+     */
     protected ?string $returnurl;
+    /**
+     * @var string Action name.
+     */
     protected string $actionname;
+    /**
+     * @var string Action class.
+     */
     protected string $action;
+    /**
+     * @var int Provider ID.
+     */
     protected int $providerid;
+    /**
+     * @var string Provider name.
+     */
     protected string $providername;
+    /**
+     * @var array Stored model settings.
+     */
     protected array $storedmodelsettings;
 
     #[\Override]
@@ -102,6 +123,9 @@ class action_form extends action_settings_form {
         return $data;
     }
 
+    /**
+     * Adds model selection fields to the form.
+     */
     protected function add_model_fields(): void {
         global $PAGE;
         $PAGE->requires->js_call_amd('aiprovider_sarvam/modelchooser', 'init');

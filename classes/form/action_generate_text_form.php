@@ -62,12 +62,22 @@ class action_generate_text_form extends action_form {
         $mform->setDefault('temperature', $this->actionconfig['temperature'] ?? '');
         $mform->addHelpButton('temperature', 'settings_temperature', 'aiprovider_sarvam');
 
-        $mform->addElement('textarea', 'systeminstruction', get_string('systeminstruction', 'aiprovider_sarvam'), ['rows' => 4, 'cols' => 80]);
+        $mform->addElement(
+            'textarea',
+            'systeminstruction',
+            get_string('systeminstruction', 'aiprovider_sarvam'),
+            ['rows' => 4, 'cols' => 80],
+        );
         $mform->setType('systeminstruction', PARAM_TEXT);
         $mform->setDefault('systeminstruction', $this->actionconfig['systeminstruction'] ?? '');
         $mform->addHelpButton('systeminstruction', 'systeminstruction', 'aiprovider_sarvam');
 
-        $mform->addElement('textarea', 'modelextraparams', get_string('modelextraparams', 'aiprovider_sarvam'), ['rows' => 4, 'cols' => 80]);
+        $mform->addElement(
+            'textarea',
+            'modelextraparams',
+            get_string('modelextraparams', 'aiprovider_sarvam'),
+            ['rows' => 4, 'cols' => 80],
+        );
         $mform->setType('modelextraparams', PARAM_RAW);
         $mform->setDefault('modelextraparams', $this->actionconfig['modelextraparams'] ?? '{}');
         $mform->addHelpButton('modelextraparams', 'modelextraparams', 'aiprovider_sarvam');

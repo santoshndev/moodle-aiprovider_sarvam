@@ -28,6 +28,12 @@ use Psr\Http\Message\ResponseInterface;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class process_generate_text extends abstract_processor {
+    /**
+     * Create the text generation request payload.
+     *
+     * @param string $userid The generated user identifier.
+     * @return RequestInterface The prepared HTTP request.
+     */
     #[\Override]
     protected function create_request_object(string $userid): RequestInterface {
         $userobj = new \stdClass();
@@ -60,6 +66,12 @@ class process_generate_text extends abstract_processor {
         );
     }
 
+    /**
+     * Parse the successful completion response.
+     *
+     * @param ResponseInterface $response The HTTP response.
+     * @return array The generated text and metadata.
+     */
     #[\Override]
     protected function handle_api_success(ResponseInterface $response): array {
         $bodyobj = json_decode($response->getBody()->getContents());

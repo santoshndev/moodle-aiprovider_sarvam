@@ -27,6 +27,12 @@ use core_ai\hook\after_ai_provider_form_hook;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class hook_listener {
+    /**
+     * Add the provider API key configuration field to the provider settings form.
+     *
+     * @param after_ai_provider_form_hook $hook The form hook instance.
+     * @return void
+     */
     public static function set_form_definition_for_aiprovider_sarvam(after_ai_provider_form_hook $hook): void {
         if ($hook->plugin !== 'aiprovider_sarvam') {
             return;
@@ -43,6 +49,12 @@ class hook_listener {
         $mform->addRule('apikey', get_string('required'), 'required', null, 'client');
     }
 
+    /**
+     * Add model-specific extra settings when the custom model is selected.
+     *
+     * @param after_ai_action_settings_form_hook $hook The action form hook instance.
+     * @return void
+     */
     public static function set_model_form_definition_for_aiprovider_sarvam(after_ai_action_settings_form_hook $hook): void {
         if ($hook->plugin !== 'aiprovider_sarvam') {
             return;
