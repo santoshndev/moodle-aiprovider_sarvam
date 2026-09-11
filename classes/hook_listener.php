@@ -26,10 +26,8 @@ use core_ai\hook\after_ai_provider_form_hook;
  * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class hook_listener
-{
-    public static function set_form_definition_for_aiprovider_sarvam(after_ai_provider_form_hook $hook): void
-    {
+class hook_listener {
+    public static function set_form_definition_for_aiprovider_sarvam(after_ai_provider_form_hook $hook): void {
         if ($hook->plugin !== 'aiprovider_sarvam') {
             return;
         }
@@ -45,8 +43,7 @@ class hook_listener
         $mform->addRule('apikey', get_string('required'), 'required', null, 'client');
     }
 
-    public static function set_model_form_definition_for_aiprovider_sarvam(after_ai_action_settings_form_hook $hook): void
-    {
+    public static function set_model_form_definition_for_aiprovider_sarvam(after_ai_action_settings_form_hook $hook): void {
         if ($hook->plugin !== 'aiprovider_sarvam') {
             return;
         }

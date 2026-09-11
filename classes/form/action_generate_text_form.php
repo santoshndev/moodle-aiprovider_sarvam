@@ -23,11 +23,9 @@ namespace aiprovider_sarvam\form;
  * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class action_generate_text_form extends action_form
-{
+class action_generate_text_form extends action_form {
     #[\Override]
-    protected function definition(): void
-    {
+    protected function definition(): void {
         parent::definition();
 
         $mform = $this->_form;

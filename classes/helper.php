@@ -23,20 +23,17 @@ namespace aiprovider_sarvam;
  * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class helper
-{
+class helper {
     /**
      * Return supported model IDs.
      *
      * @return array
      */
-    public static function get_model_list(): array
-    {
+    public static function get_model_list(): array {
         return [
             'sarvam-105b' => 'Sarvam-105B',
             'sarvam-m' => 'Sarvam M',
             'sarvam-2' => 'Sarvam 2',
-            'custom' => 'Custom model',
         ];
     }
 
@@ -46,8 +43,7 @@ class helper
      * @param  string $modelname
      * @return string|null
      */
-    public static function get_model_class(string $modelname): ?string
-    {
+    public static function get_model_class(string $modelname): ?string {
         return self::get_model_list()[$modelname] ?? null;
     }
 }

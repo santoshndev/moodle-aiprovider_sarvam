@@ -27,11 +27,9 @@ use Psr\Http\Message\ResponseInterface;
  * @copyright 2026 Santosh Nagargoje <santosh.nag2217@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class process_generate_text extends abstract_processor
-{
+class process_generate_text extends abstract_processor {
     #[\Override]
-    protected function create_request_object(string $userid): RequestInterface
-    {
+    protected function create_request_object(string $userid): RequestInterface {
         $userobj = new \stdClass();
         $userobj->role = 'user';
         $userobj->content = $this->action->get_configuration('prompttext');
@@ -63,8 +61,7 @@ class process_generate_text extends abstract_processor
     }
 
     #[\Override]
-    protected function handle_api_success(ResponseInterface $response): array
-    {
+    protected function handle_api_success(ResponseInterface $response): array {
         $bodyobj = json_decode($response->getBody()->getContents());
 
         return [
